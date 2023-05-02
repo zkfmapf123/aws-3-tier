@@ -4,3 +4,6 @@ tf.tfvars
 *.lock.hcl
 *.**.tfstate.lock.info
 *.tfstate
+
+## Secrets
+secrets/
