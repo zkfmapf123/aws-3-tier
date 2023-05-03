@@ -9,15 +9,27 @@
 
 - VPC
 
-  - Subnets
-  - NACLs
-  - Security Groups
-  - NAT gateways
-  - Internet gateways
+  [x] Subnets
 
-- EC2
+  - [x] WebServer (Public)
+  - [x] WAS (Private)
+  - [x] DB (Private)
+  - [x] NAT gateways
+  - [x] Internet gateways
 
+- 1 Tier (WebServer)
+
+  - [ ] EC2
+  - [ ] Security Group
+  - [ ] nginx
+
+- 2 Tier (WAS)
+
+  - EC2
+  - Security Group
   - Auto Scaling
   - Application Load Balancer
 
-- RDS
+- 3 Tier (Database)
+
+  - [ ] RDS
