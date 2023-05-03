@@ -43,6 +43,50 @@ resource "aws_subnet" "webserver" {
         Name = join("", ["webserver_", local.subnet_purpose[count.index]])
     }
 }
+
+resource "aws_route_table" "webserver_route_table" {
+    vpc_id = aws_vpc.main_vpc.id
+
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.main_igw.id
+    }
+
+    tags = {
+        Name = "web_server_route_table"
+    }
+}
+
+## Public Subnet의 개수만큼 RT Table에 Assoication
+resource "aws_route_table_association" "webserver_route_table_association" {
+    count = length(var.cidrs["public"])
+
+    subnet_id = aws_subnet.webserver[count.index].id
+    route_table_id = aws_route_table.webserver_route_table.id
+}
+
+## eip
+resource "aws_eip" "main_eip" {
+    count = length(var.cidrs["public"]) > 0 ? 1 : 0
+
+    depends_on = [aws_internet_gateway.main_igw]
+    vpc = true
+}
+
+## Nat Gateway
+# resource "aws_nat_gateway" "main_nat_gateway" {
+#     count = length(var.cidrs["public"]) > 0 ? 1 : 0
+
+#     depends_on = [aws_internet_gateway.main_igw]
+
+#     allocation_id = try(aws_eip.main_eip[0].id, "")
+#     subnet_id = try(var.cidrs["public"][0].id,"") 
+
+#     tags = {
+#         Name = join("",["main_nat_gateway_",count.index, "_", local.subnet_purpose[count.index]])
+#     }
+# }
+
 #############################################################################
 
 ############################# Private Subnet #################################
