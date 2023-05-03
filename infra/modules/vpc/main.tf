@@ -74,18 +74,18 @@ resource "aws_eip" "main_eip" {
 }
 
 ## Nat Gateway
-# resource "aws_nat_gateway" "main_nat_gateway" {
-#     count = length(var.cidrs["public"]) > 0 ? 1 : 0
+resource "aws_nat_gateway" "main_nat_gateway" {
+    count = length(var.cidrs["public"]) > 0 ? 1 : 0
 
-#     depends_on = [aws_internet_gateway.main_igw]
+    depends_on = [aws_internet_gateway.main_igw]
 
-#     allocation_id = try(aws_eip.main_eip[0].id, "")
-#     subnet_id = try(var.cidrs["public"][0].id,"") 
+    allocation_id = try(aws_eip.main_eip[0].id, "")
+    subnet_id = try(aws_subnet.webserver[0].id,"") 
 
-#     tags = {
-#         Name = join("",["main_nat_gateway_",count.index, "_", local.subnet_purpose[count.index]])
-#     }
-# }
+    tags = {
+        Name = join("",["main_nat_gateway_",count.index, "_", local.subnet_purpose[count.index]])
+    }
+}
 
 #############################################################################
 
