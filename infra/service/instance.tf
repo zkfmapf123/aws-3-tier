@@ -1,8 +1,0 @@
-module vpc {
-    source = "../modules/vpc"
-
-    AWS_VPC_CIRD = var.AWS_VPC_CIRD
-    AWS_AZ_PREFIXS = var.AWS_AZ_PREFIXS
-    AWS_PRIVATE_SUBNETS = var.AWS_PRIVATE_SUBNETS
-    AWS_PUBLIC_SUBNETS = var.AWS_PUBLIC_SUBNETS
-}

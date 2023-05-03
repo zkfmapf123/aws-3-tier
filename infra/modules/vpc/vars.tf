@@ -1,21 +1,24 @@
-## Availability Zone
-variable "AWS_VPC_CIRD" {
+variable "aws_region" {
+  type = string
+}
+
+variable "env" {
     type = string
 }
 
-variable "AWS_AZ_PREFIXS" {
-    type = list(string)
-}   
-
-## Subnet Private Cidr Block
-variable "AWS_PRIVATE_SUBNETS" {
-    type = list(string)
+variable "vpc_cidr" {
+    type = string
 }
 
-## Subnet Public Cidr Block
-variable "AWS_PUBLIC_SUBNETS" {
-    type = list(string)
+variable "azs" {
+  type = list(string)
 }
 
-
-
+/*
+    public
+    private
+    database
+*/
+variable "cidrs" {
+  type = map(list(string))
+}

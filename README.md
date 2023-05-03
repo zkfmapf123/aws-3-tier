@@ -3,6 +3,7 @@
 ## Architecture
 
 ![3-tier](./public/3-tier.png)
+![3-tier-example](./public/3-tier-example.png)
 
 ## Services
 
