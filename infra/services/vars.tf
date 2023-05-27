@@ -1,26 +1,16 @@
-## AWS Credentials
-variable "aws_region" {}
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
-variable "env" {}
+# aws_credentials
+variable "aws_credentials" {
+    type = map(string)
 
-## VPC
-variable "vpc_cidr" {}
-variable "azs" { 
+    default = {
+      "aws_region" = "",
+      "aws_access_key" = "",
+      "aws_secret_key" = ""
+    }
+}
+
+variable "aws_azs" {
     type = list(string)
-}
-variable "cidrs" {
-    type = map(list(string))
-}
 
-## WebServer
-variable "webserver" {
-    type = map(any)
+    default = []
 }
-
-## Database
-variable "database" {
-    type = map(any)
-}
-
-
