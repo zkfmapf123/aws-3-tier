@@ -14,3 +14,15 @@ variable "aws_azs" {
 
     default = []
 }
+
+variable "vpc_cidr" {
+  type = string
+}
+
+variable "cidrs_map" {
+  type = map(list(string))
+}
+
+variable "env" {
+  type = string
+}
