@@ -6,15 +6,13 @@
   source alias.sh
   tf workspace new [mode]
 
-  tf init && tf plan -var-file="../tf.tfvars"
-  tf apply -var-file="../tf.tfvars"
+  tf init && tf plan -var-file=tf.tfvars
+  tf apply -var-file=tf.tfvars
 ```
 
 ## Architecture
 
-![network](./public/network.png)
-![3-tier](./public/3-tier.png)
-![3-tier-example](./public/3-tier-example.png)
+![3-ter](./public/3-tier.png)
 
 ## Caution
 
