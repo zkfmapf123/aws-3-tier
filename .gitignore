@@ -6,6 +6,7 @@ tf.tfvars
 *.**.tfstate.lock.info
 *.tfstate
 terraform.tfstate.backup
+terraform.tfstate.d
 
 ## Secrets
 secrets/

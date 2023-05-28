@@ -18,3 +18,4 @@
 
 - ap-northeast-2의 경우 t3로 진행해야 함 (t2는 불가)
 - t3.nano는 ssh provisioning이 안됨... 네트워크 불량? + 저사양? => t3.micro 이상으로 해야함
+- EC2 에서 MarketPlace AMI는 구독을 해야 생성이 되네?

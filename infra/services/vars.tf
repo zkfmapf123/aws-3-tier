@@ -9,6 +9,17 @@ variable "aws_credentials" {
     }
 }
 
+# aws_ec2_ami_map
+variable "aws_ec2_ami_map" {
+  type = map(string)
+
+  default = {
+    openVPN = "",
+    was = ""
+  }
+}
+
+
 variable "aws_azs" {
     type = list(string)
 
@@ -26,3 +37,4 @@ variable "cidrs_map" {
 variable "env" {
   type = string
 }
+
