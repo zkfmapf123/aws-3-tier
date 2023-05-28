@@ -13,3 +13,7 @@ resource "aws_internet_gateway" "main_igw" {
         Name = "${var.env}_main_igw"
     }
 }
+
+output aws_internet_gateway_id { 
+    value = aws_internet_gateway.main_igw.id
+}

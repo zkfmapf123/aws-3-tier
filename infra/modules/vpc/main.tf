@@ -6,6 +6,14 @@ module "igw" {
 
 }
 
+# A Public Subnet에 위치
+module "nat_gateway" {
+    source = "../nat-gateway"
+
+    env = var.env
+    subnet_id = aws_subnet.main_public_subnet[0].id
+}
+
 locals {
     az_names = [for suffix in var.aws_azs : "${var.aws_region}${suffix}"]
 
@@ -64,5 +72,32 @@ resource "aws_subnet" "main_private_db_subnet" {
 
     tags = {
         Name = "${var.env}_private_db_subnet_${local.az_names[count.index]}"
+    }
+}
+
+##### Route Table #####
+resource "aws_route_table" "main_public_route_table" {
+    vpc_id = aws_vpc.main_vpc.id
+
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = module.igw.aws_internet_gateway_id
+    }
+
+    tags = {
+        Name = "${var.env}_main_public_route_table"
+    }
+}
+
+resource "aws_route_table" "main_private_route_table" {
+    vpc_id = aws_vpc.main_vpc.id
+
+    route { 
+        cidr_block = "0.0.0.0/0"
+        gateway_id = module.nat_gateway.aws_nat_gateway_id
+    }
+
+    tags = {
+        Name = "${var.env}_main_private_route_table"
     }
 }
