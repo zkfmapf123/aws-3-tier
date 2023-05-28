@@ -1,3 +1,11 @@
+module "igw" {
+    source = "../internet-gateway"
+
+    vpc_id = aws_vpc.main_vpc.id
+    env = var.env
+
+}
+
 locals {
     az_names = [for suffix in var.aws_azs : "${var.aws_region}${suffix}"]
 
@@ -14,15 +22,6 @@ resource "aws_vpc" "main_vpc" {
 
     tags = {
         Name = "${var.env}_main_vpc"
-    }
-}
-
-#### IGW ####
-resource "aws_internet_gateway" "main_igw" {
-    vpc_id = aws_vpc.main_vpc.id
-
-    tags = {
-        Name = "${var.env}_main_igw"
     }
 }
 
