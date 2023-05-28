@@ -13,3 +13,9 @@ cidrs_map = {
     "private" : ["10.1.1.128/27", "10.1.1.160/27"],
     "db" : ["10.1.1.192/27", "10.1.1.224/27"]
 }
+
+# AWS_EC2
+aws_ec2_ami_map = {
+    "openVPN" = "ami-XXXXXXXXXXXXX",
+    "was" = "ami-XXXXXXXXXXXXX"
+}
